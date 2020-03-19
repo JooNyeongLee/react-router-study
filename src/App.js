@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Route, BrowserRouter as Router, NavLink } from 'react-router-dom';
+import Menu from './Pages/Menu';
+import pages from './Pages';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        헤더!!!
+        <Router>
+          <Menu/>
+          {
+            pages.map(({exact,component,path,role})=>{
+              if(!role)
+              return <Route exact={exact} component={component} path={path} ></Route>
+            })
+          }
+        </Router>
+        푸터!!!
+      </div>
+    );
+  }
 }
 
 export default App;
